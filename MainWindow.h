@@ -60,6 +60,7 @@ class MyGlWidget;
 class Vector;
 class EarthquakeRecord;
 class QCPGraph;
+class QCPItemText;
 class QCPItemTracer;
 class EarthquakeRecord;
 class QNetworkAccessManager;
@@ -116,6 +117,7 @@ private slots:
     // for earthquake motion combo box
     void on_inMotionSelection_currentTextChanged(const QString &arg1);
     void on_addMotion_clicked();
+    void on_scaleFactor_editingFinished();
 
      // for stop and start buttons
     void on_stopButton_clicked();
@@ -182,7 +184,7 @@ private:
     QLineEdit *inHeight;
     QLineEdit *inK;
     QLineEdit *inDamping;
-    QLineEdit *inGravity;
+   // QLineEdit *inGravity;
     QCheckBox *pDeltaBox;
 
     // specific inputs when many selected
@@ -191,6 +193,8 @@ private:
     QLineEdit *inStoryFy;
     QLineEdit *inStoryB;
     QLineEdit *inStoryHeight;
+
+    QLineEdit *inScaleFactor;
 
     // buttons for running, stoppping & exiting
     QPushButton *runButton;
@@ -206,6 +210,8 @@ private:
 
     // output panel widgets
     QCustomPlot *earthquakePlot;
+    QCPItemText *earthquakeText;
+
     QSlider *slider;
     MyGlWidget *myGL;
     QComboBox *periods;
@@ -250,6 +256,7 @@ private:
     int numSteps;
     double *gMotion;
     Vector *eqData;
+    double scaleFactor;
 
     bool includePDelta;
     bool needAnalysis;

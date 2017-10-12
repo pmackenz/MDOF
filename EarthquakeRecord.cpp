@@ -68,12 +68,12 @@ void
 EarthquakeRecord::outputToJSON(QJsonObject &jsonObj){
     jsonObj["name"]=name;
     jsonObj["dT"]=dt;
-    jsonObj["numberSteps"]=numSteps;
+    jsonObj["numPoints"]=numSteps;
     QJsonArray dataValues;
     for (int i=0; i<data->Size(); i++) {
         dataValues.append((*data)[i]);
     }
-    jsonObj["data"]=dataValues;
+    jsonObj["accel_data"]=dataValues;
 }
 
 void
@@ -82,13 +82,14 @@ EarthquakeRecord::inputFromJSON(QJsonObject &jsonObj){
     name=theValue.toString();
     theValue = jsonObj["dT"];
     dt=theValue.toDouble();
-    theValue = jsonObj["numberSteps"];
+    theValue = jsonObj["numPoints"];
     numSteps=theValue.toInt();
+
     if (data != 0)
         delete [] data;
     data = new Vector(numSteps);
 
-    theValue = jsonObj["data"];
+    theValue = jsonObj["accel_data"];
     QJsonArray dataPoints = theValue.toArray();
     for (int i=0; i<numSteps; i++)
         (*data)[i] = dataPoints.at(i).toDouble();

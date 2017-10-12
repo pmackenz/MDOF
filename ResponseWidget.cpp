@@ -11,7 +11,8 @@ extern QLineEdit *
 createTextEntry(QString text,
                 QVBoxLayout *theLayout,
                 int minL=100,
-                int maxL=100);
+                int maxL=100,
+        QString *unitText =0);
 
 
 
@@ -104,7 +105,6 @@ ResponseWidget::setData(QVector<double> &data, QVector<double> &time, int numSte
     thePlot->axisRect()->setMargins(QMargins(0,0,0,0));
     thePlot->replot();
 
-
 }
 
 void
@@ -143,5 +143,4 @@ ResponseWidget::setData(QVector<double> &data, QVector<double> &x, int numSteps)
     //thePlot->axisRect()->setAutoMargins(QCP::msNone);
    // thePlot->axisRect()->setMargins(QMargins(0,0,0,0));
     thePlot->replot();
-
 }
